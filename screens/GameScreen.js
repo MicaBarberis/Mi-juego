@@ -2,7 +2,7 @@ import { Button, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Card from '../components/Card'
 
-const GameScreen = () => {
+const GameScreen = ({handleResult}) => {
   const [currentGuess, setCurrentGuess] = useState ();
 
   useEffect(() => {
@@ -14,8 +14,10 @@ const GameScreen = () => {
         <Text>La suposición del oponente</Text>
         <Text>{currentGuess} </Text>
         <Card newStyles={styles.buttonContainer} >
-          <Button title='Menor'></Button>
-          <Button title='Mayor'></Button>
+          <Button title='Menor'
+          onPress={() => handleResult("Perdedor", currentGuess)}></Button>
+          <Button title='Mayor'
+          onPress={() => handleResult("Ganador", currentGuess)}></Button>
         </Card>
       </View>
     )
@@ -35,6 +37,6 @@ const styles = StyleSheet.create({
     flexDirection: row,
       justifyContent: "space-between",
       marginTop: 20,
-      widht: 300,
-  }
+      widht:"80%"
+  },
 })
